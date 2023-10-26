@@ -11,25 +11,35 @@ private:
     string date;
     string company;
     string spectrumRange;
+    string circle;
+    string revenue;
 
 public:
     spectrumRangeClass(){
     }
 
-    spectrumRangeClass(string date, string company, string spectrumRange){
+    spectrumRangeClass(string date, string company, string spectrumRange,string circle,string revenue){
         this->date = date;
         this->company = company;
         this->spectrumRange = spectrumRange;
+        this->circle = circle;
+        this->revenue = revenue;
     }
 
     string get_date() {
         return date;
     }
-     string get_company() {
+    string get_company() {
         return company;
     }
-     string get_spectrumRange() {
+    string get_spectrumRange() {
         return spectrumRange;
+    }
+    string get_circle() {
+        return circle;
+    }
+    string get_revenue() {
+        return revenue;
     }
 };
 
@@ -124,12 +134,16 @@ spectrumRangeClass* readCSVFileRange(const string& filename) {
         string date;
         string company;
         string spectrumRange;
+        string circle;
+        string revenue;
 
         getline(ss, date, ',');
         getline(ss, company, ',');
         getline(ss, spectrumRange, ',');
+        getline(ss, circle, ',');
+        getline(ss, revenue, ',');
 
-        data[i] = spectrumRangeClass(date, company, spectrumRange); 
+        data[i] = spectrumRangeClass(date, company, spectrumRange,circle,revenue); 
         // cout<<data[i].get_date()<<" "<<data[i].get_company()<<" "<<data[i].get_spectrumRange()<<endl;
         i++;
     }
@@ -222,21 +236,44 @@ int main(){
     spectrumRequestClass* spectrumRequest = readCSVFileReq("spectrumRequest.csv");
     
     // printing the spectrumRange CSV file
-    cout<<"\t\t\t\t\t\t\t\tspectrumRange"<<endl;
+    cout<<"\t\t\t\tSpectrum Range\n"<<endl;
     for(int i=0;i<index_spectrumRange;i++){
-        cout<<spectrumRange[i].get_date()<<" "<<spectrumRange[i].get_company()<<" "<<spectrumRange[i].get_spectrumRange()<<endl;
+        if(spectrumRange[i].get_company()!="Vodafone")
+            cout<<spectrumRange[i].get_date()<<" \t"<<spectrumRange[i].get_company()<<" \t\t"<<spectrumRange[i].get_spectrumRange()<<" \t";
+        if(spectrumRange[i].get_company()=="Vodafone")
+            cout<<spectrumRange[i].get_date()<<" \t"<<spectrumRange[i].get_company()<<" \t"<<spectrumRange[i].get_spectrumRange()<<" \t";
+        if(spectrumRange[i].get_circle()=="Kolkata" || spectrumRange[i].get_circle()=="Chandigarh" || spectrumRange[i].get_circle()=="Lucknow" )
+            cout<<spectrumRange[i].get_circle()<<" \t"<<spectrumRange[i].get_revenue()<<endl;
+        else
+            cout<<spectrumRange[i].get_circle()<<" \t\t"<<spectrumRange[i].get_revenue()<<endl;
+
     }
 
     // printing the subscribers CSV file
-    cout<<"\t\t\t\t\t\t\tsubscribers"<<endl;
+    cout<<"\n\t\t  Subscribers\n"<<endl;
     for(int i=0;i<index_subscribers;i++){
-        cout<<subscribers[i].get_date()<<" "<<subscribers[i].get_company()<<" "<<subscribers[i].get_Location()<<" "<<subscribers[i].get_Subscribers()<<endl;
+        if(subscribers[i].get_company()!="Vodafone")
+            cout<<subscribers[i].get_date()<<" \t"<<subscribers[i].get_company()<<" \t\t";
+        if(subscribers[i].get_company()=="Vodafone")
+            cout<<subscribers[i].get_date()<<" \t"<<subscribers[i].get_company()<<" \t";
+        if(subscribers[i].get_Location()=="Kolkata" || subscribers[i].get_Location()=="Chandigarh" || subscribers[i].get_Location()=="Lucknow" )
+             cout<<subscribers[i].get_Location()<<" \t"<<subscribers[i].get_Subscribers()<<endl;
+        else
+            cout<<subscribers[i].get_Location()<<" \t\t"<<subscribers[i].get_Subscribers()<<endl;
     }
 
      // printing the spectrumRequest CSV file
-     cout<<"\t\t\t\t\t\t\tspectrumRequest"<<endl;
+     cout<<"\n\t\t  Spectrum Request\n"<<endl;
     for(int i=0;i<index_spectrumRequest;i++){
-        cout<<spectrumRequest[i].get_date()<<" "<<spectrumRequest[i].get_company()<<" "<<spectrumRequest[i].get_Location()<<" "<<spectrumRequest[i].get_Request()<<endl;
+        if(spectrumRequest[i].get_company()!="Vodafone")
+            cout<<spectrumRequest[i].get_date()<<" \t"<<spectrumRequest[i].get_company()<<" \t\t";
+        if(spectrumRequest[i].get_company()=="Vodafone")
+            cout<<spectrumRequest[i].get_date()<<" \t"<<spectrumRequest[i].get_company()<<" \t";
+        if(spectrumRequest[i].get_Location()=="Kolkata" || spectrumRequest[i].get_Location()=="Chandigarh" || spectrumRequest[i].get_Location()=="Lucknow" )
+            cout<<spectrumRequest[i].get_Location()<<" \t"<<spectrumRequest[i].get_Request()<<endl;
+        else
+            cout<<spectrumRequest[i].get_Location()<<" \t\t"<<spectrumRequest[i].get_Request()<<endl;
+
     }
 
     return 0;
