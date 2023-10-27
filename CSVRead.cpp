@@ -14,13 +14,13 @@ private:
     string company;
     string spectrumRange;
     string circle;
-    string revenue;
+    int revenue;
 
 public:
     spectrumRangeClass(){
     }
 
-    spectrumRangeClass(string date, string company, string spectrumRange,string circle,string revenue){
+    spectrumRangeClass(string date, string company, string spectrumRange,string circle,int revenue){
         this->date = date;
         this->company = company;
         this->spectrumRange = spectrumRange;
@@ -40,7 +40,7 @@ public:
     string get_circle() {
         return circle;
     }
-    string get_revenue() {
+    int get_revenue() {
         return revenue;
     }
 };
@@ -49,14 +49,16 @@ class spectrumRangePerComp : public spectrumRangeClass{
     private:
     string Location;
     string spectrum;
+    int revenue;
 
     public:
     spectrumRangePerComp(){
     }
 
-    spectrumRangePerComp(string Location, string spectrum){
+    spectrumRangePerComp(string Location, string spectrum,int revenue){
         this->Location = Location;
         this->spectrum = spectrum;
+        this->revenue=revenue;
     }
 
     string get_Location() {
@@ -65,13 +67,16 @@ class spectrumRangePerComp : public spectrumRangeClass{
     string get_spectrum() {
         return spectrum;
     }
+    int get_revenue(){
+        return revenue;
+    }
 
 
     void findSpectrumAirtel(spectrumRangeClass* spect,spectrumRangePerComp* Airtelspectrum){
         int ind1 = 0;
         for( int i =0;i<100;i++){
             if(spect[i].get_company()=="Airtel"){
-                Airtelspectrum[ind1] = spectrumRangePerComp(spect[i].get_circle(), spect[i].get_spectrumRange());
+                Airtelspectrum[ind1] = spectrumRangePerComp(spect[i].get_circle(), spect[i].get_spectrumRange(), spect[i].get_revenue());
                 ind1++;
             }
         }
@@ -81,7 +86,7 @@ class spectrumRangePerComp : public spectrumRangeClass{
         int ind2 = 0;
         for( int i =0;i<100;i++){
             if(spect[i].get_company()=="BSNL"){
-            BSNLspectrum[ind2] = spectrumRangePerComp(spect[i].get_circle(), spect[i].get_spectrumRange());
+            BSNLspectrum[ind2] = spectrumRangePerComp(spect[i].get_circle(), spect[i].get_spectrumRange(), spect[i].get_revenue());
             ind2++;
             }
         }
@@ -91,7 +96,7 @@ class spectrumRangePerComp : public spectrumRangeClass{
         int ind3 = 0;
             for( int i =0;i<100;i++){
             if(spect[i].get_company()=="Jio"){
-            Jiospectrum[ind3] = spectrumRangePerComp(spect[i].get_circle(), spect[i].get_spectrumRange());
+            Jiospectrum[ind3] = spectrumRangePerComp(spect[i].get_circle(), spect[i].get_spectrumRange(), spect[i].get_revenue());
             ind3++;
             }
         }
@@ -101,7 +106,7 @@ class spectrumRangePerComp : public spectrumRangeClass{
         int ind4 = 0;
         for( int i =0;i<100;i++){
              if(spect[i].get_company()=="Vodafone"){
-            Vodafonespectrum[ind4] = spectrumRangePerComp(spect[i].get_circle(),spect[i].get_spectrumRange());
+            Vodafonespectrum[ind4] = spectrumRangePerComp(spect[i].get_circle(),spect[i].get_spectrumRange(), spect[i].get_revenue());
             ind4++;
             }
         }
@@ -147,6 +152,48 @@ class spectrumRangePerComp : public spectrumRangeClass{
         location[5] = spect;
         return location;
     }
+
+     int* findSpectrumRevenue(spectrumRangePerComp* spectrum,int size){
+        int* Revenue = new int[6];
+        int sum =0;
+        for(int i =0;i<size;i++){
+            if(spectrum[i].get_Location()=="Delhi")
+               sum+=spectrum[i].get_revenue(); 
+        }
+        Revenue[0] = sum;
+        sum = 0;
+        for(int i =0;i<size;i++){
+            if(spectrum[i].get_Location()=="Chandigarh")
+                sum+=spectrum[i].get_revenue(); 
+        }
+        Revenue[1] = sum;
+        sum = 0;
+        for(int i =0;i<size;i++){
+            if(spectrum[i].get_Location()=="Jaipur")
+                sum+=spectrum[i].get_revenue(); 
+        }
+        Revenue[2] = sum;
+        sum = 0;
+        for(int i =0;i<size;i++){
+            if(spectrum[i].get_Location()=="Kolkata")
+                sum+=spectrum[i].get_revenue(); 
+        }
+        Revenue[3] = sum;
+        sum = 0;
+        for(int i =0;i<size;i++){
+            if(spectrum[i].get_Location()=="Lucknow")
+                sum+=spectrum[i].get_revenue(); 
+        }
+        Revenue[4] = sum;
+        sum = 0;
+        for(int i =0;i<size;i++){
+            if(spectrum[i].get_Location()=="Patna")
+                sum+=spectrum[i].get_revenue(); 
+        }
+        Revenue[5] = sum;
+        return Revenue;
+    }
+
 
     int findtotalspectrum(string &spect){
         string digits;
@@ -485,12 +532,6 @@ public:
                 min = BSNLspecDensityLocation[index];
         }
 
-        // cout<<min<<" min "<<endl;
-        // cout<<min1<<" min1 "<<endl;
-        // cout<<min2<<" min2 "<<endl;
-        // cout<<min3<<" min3"<<endl;
-        // cout<<min4<<" min4 "<<endl;
-
         if(min == min1)
             return "Airtel";
         if(min == min2)
@@ -499,6 +540,24 @@ public:
             return "Jio";  
         else
             return "Vodafone";  
+    }
+};
+
+class revenueGenerated{
+public:
+
+    int RevenueGeneratedSpectrum(string SpectrumperAllocated,int AirtelRevenue[],int BSNLRevenue[],int JioRevenue[],int VodafoneRevenue[], int index){
+
+        if(SpectrumperAllocated=="Airtel"){
+            return AirtelRevenue[index];
+        }
+        if(SpectrumperAllocated=="BSNL"){
+            return BSNLRevenue[index];
+        }
+        if(SpectrumperAllocated=="Jio"){
+            return JioRevenue[index];
+        }
+        return VodafoneRevenue[index];     
     }
 };
 
@@ -533,7 +592,7 @@ spectrumRangeClass* readCSVFileRange(const string& filename) {
         getline(ss, circle, ',');
         getline(ss, revenue, ',');
 
-        data[i] = spectrumRangeClass(date, company, spectrumRange,circle,revenue); 
+        data[i] = spectrumRangeClass(date, company, spectrumRange,circle,stoi(revenue)); 
         // cout<<data[i].get_date()<<" "<<data[i].get_company()<<" "<<data[i].get_spectrumRange()<<endl;
         i++;
     }
@@ -680,23 +739,23 @@ int main(){
     subs->findSubscriberVodafone(subscribers,Vodafonesubscriber);
 
 
-    // // Print the Subscibers per Company
-    // cout<<"\n\t  Airtel Subscriber\n"<<endl;
-    // for(int i=0;i<24;i++){
-    //         cout<<Airtelsubscriber[i].get_Subscribers()<<" \t"<<Airtelsubscriber[i].get_Location()<<endl;
-    // }
-    // cout<<"\n\t  BSNL Subscriber\n"<<endl;
-    // for(int i=0;i<31;i++){
-    //         cout<<BSNLsubscriber[i].get_Subscribers()<<" \t"<<BSNLsubscriber[i].get_Location()<<endl;
-    // }
-    // cout<<"\n\t  Jio Subscriber\n"<<endl;
-    // for(int i=0;i<18;i++){
-    //         cout<<Jiosubscriber[i].get_Subscribers()<<" \t"<<Jiosubscriber[i].get_Location()<<endl;
-    // }
-    // cout<<"\n\t  Vodafone Subscriber\n"<<endl;
-    // for(int i=0;i<27;i++){
-    //         cout<<Vodafonesubscriber[i].get_Subscribers()<<" \t"<<Vodafonesubscriber[i].get_Location()<<endl;
-    // }
+    // Print the Subscibers per Company
+    cout<<"\n   Airtel Subscriber\n"<<endl;
+    for(int i=0;i<24;i++){
+            cout<<Airtelsubscriber[i].get_Subscribers()<<" \t"<<Airtelsubscriber[i].get_Location()<<endl;
+    }
+    cout<<"\n   BSNL Subscriber\n"<<endl;
+    for(int i=0;i<31;i++){
+            cout<<BSNLsubscriber[i].get_Subscribers()<<" \t"<<BSNLsubscriber[i].get_Location()<<endl;
+    }
+    cout<<"\n   Jio Subscriber\n"<<endl;
+    for(int i=0;i<18;i++){
+            cout<<Jiosubscriber[i].get_Subscribers()<<" \t"<<Jiosubscriber[i].get_Location()<<endl;
+    }
+    cout<<"\n   Vodafone Subscriber\n"<<endl;
+    for(int i=0;i<27;i++){
+            cout<<Vodafonesubscriber[i].get_Subscribers()<<" \t"<<Vodafonesubscriber[i].get_Location()<<endl;
+    }
 
     // Find Subscribers for Each Location
     int* subsAirtel = subs->findSubscriberLocation(Airtelsubscriber,24);
@@ -706,37 +765,37 @@ int main(){
 
     string location[] = {"Delhi","Chandigarh","Jaipur","Kolkata","Lucknow","Patna"}; 
 
-    // cout<<"\n  Airtel Subscriber per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //     if(location[i]!="Chandigarh")
-    //         cout<<location[i]<<"\t   ---------->\t"<<subsAirtel[i]<<endl;
-    //     else
-    //         cout<<location[i]<<" ---------->\t"<<subsAirtel[i]<<endl;
-    // }
+    cout<<"\n  Airtel Subscriber per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+        if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<subsAirtel[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<subsAirtel[i]<<endl;
+    }
 
-    // cout<<"\n  BSNL Subscriber per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //     if(location[i]!="Chandigarh")
-    //         cout<<location[i]<<"\t   ---------->\t"<<subsBSNL[i]<<endl;
-    //     else
-    //         cout<<location[i]<<" ---------->\t"<<subsBSNL[i]<<endl;
-    // }
+    cout<<"\n  BSNL Subscriber per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+        if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<subsBSNL[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<subsBSNL[i]<<endl;
+    }
 
-    // cout<<"\n  Jio Subscriber per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //     if(location[i]!="Chandigarh")
-    //         cout<<location[i]<<"\t   ---------->\t"<<subsJio[i]<<endl;
-    //     else
-    //         cout<<location[i]<<" ---------->\t"<<subsJio[i]<<endl;
-    // }
+    cout<<"\n  Jio Subscriber per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+        if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<subsJio[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<subsJio[i]<<endl;
+    }
 
-    // cout<<"\n  Vodafone Subscriber per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //     if(location[i]!="Chandigarh")
-    //         cout<<location[i]<<"\t   ---------->\t"<<subsVoda[i]<<endl;
-    //     else
-    //         cout<<location[i]<<" ---------->\t"<<subsVoda[i]<<endl;
-    // }
+    cout<<"\n  Vodafone Subscriber per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+        if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<subsVoda[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<subsVoda[i]<<endl;
+    }
 
     
 
@@ -755,35 +814,35 @@ int main(){
     spectrum->findrequest1800(spectrumRequest,request1800);
     spectrum->findrequest3500(spectrumRequest,request3500);
 
-    // // Print the Subscibers per Company
-    // cout<<"\n\tSpectrum 700\n"<<endl;
-    // for(int i=0;i<20;i++){
-    //     if(request700[i].get_company()!="Vodafone")
-    //         cout<<request700[i].get_company()<<" \t\t"<<request700[i].get_Location()<<endl;
-    //     else
-    //         cout<<request700[i].get_company()<<" \t"<<request700[i].get_Location()<<endl;
-    // }
-    // cout<<"\n\tSpectrum 800\n"<<endl;
-    // for(int i=0;i<22;i++){
-    //     if(request800[i].get_company()!="Vodafone")
-    //         cout<<request800[i].get_company()<<" \t\t"<<request800[i].get_Location()<<endl;
-    //     else   
-    //         cout<<request800[i].get_company()<<" \t"<<request800[i].get_Location()<<endl;
-    // }
-    // cout<<"\n\tSpectrum 1800\n"<<endl;
-    // for(int i=0;i<28;i++){
-    //     if(request1800[i].get_company()!="Vodafone")
-    //        cout<<request1800[i].get_company()<<" \t\t"<<request1800[i].get_Location()<<endl;
-    //     else   
-    //         cout<<request1800[i].get_company()<<" \t"<<request1800[i].get_Location()<<endl;
-    // }
-    // cout<<"\n\tSpectrum 3500\n"<<endl;
-    // for(int i=0;i<30;i++){
-    //     if(request3500[i].get_company()!="Vodafone")
-    //        cout<<request3500[i].get_company()<<" \t\t"<<request3500[i].get_Location()<<endl;
-    //     else   
-    //         cout<<request3500[i].get_company()<<" \t"<<request3500[i].get_Location()<<endl;
-    // }
+    // Print the Subscibers per Company
+    cout<<"\n    Spectrum 700\n"<<endl;
+    for(int i=0;i<20;i++){
+        if(request700[i].get_company()!="Vodafone")
+            cout<<request700[i].get_company()<<" \t\t"<<request700[i].get_Location()<<endl;
+        else
+            cout<<request700[i].get_company()<<" \t"<<request700[i].get_Location()<<endl;
+    }
+    cout<<"\n    Spectrum 800\n"<<endl;
+    for(int i=0;i<22;i++){
+        if(request800[i].get_company()!="Vodafone")
+            cout<<request800[i].get_company()<<" \t\t"<<request800[i].get_Location()<<endl;
+        else   
+            cout<<request800[i].get_company()<<" \t"<<request800[i].get_Location()<<endl;
+    }
+    cout<<"\n    Spectrum 1800\n"<<endl;
+    for(int i=0;i<28;i++){
+        if(request1800[i].get_company()!="Vodafone")
+           cout<<request1800[i].get_company()<<" \t\t"<<request1800[i].get_Location()<<endl;
+        else   
+            cout<<request1800[i].get_company()<<" \t"<<request1800[i].get_Location()<<endl;
+    }
+    cout<<"\n   Spectrum 3500\n"<<endl;
+    for(int i=0;i<30;i++){
+        if(request3500[i].get_company()!="Vodafone")
+           cout<<request3500[i].get_company()<<" \t\t"<<request3500[i].get_Location()<<endl;
+        else   
+            cout<<request3500[i].get_company()<<" \t"<<request3500[i].get_Location()<<endl;
+    }
 
     // Find Request for Each Location
     string* req700 = spectrum->findRequestLocation(request700,20);
@@ -838,74 +897,84 @@ int main(){
     spect->findSpectrumVodafone(spectrumRange,Vodafonespectrum);
 
 
-    // // Print the Spectrum per Company
-    // cout<<"\n  Airtel Spectrum\n"<<endl;
-    // for(int i=0;i<22;i++){
-    //      if(Airtelspectrum[i].get_Location()=="Kolkata" || Airtelspectrum[i].get_Location()=="Chandigarh" || Airtelspectrum[i].get_Location()=="Lucknow" )
-    //         cout<<Airtelspectrum[i].get_Location()<<" \t"<<Airtelspectrum[i].get_spectrum()<<endl;
-    //     else
-    //         cout<<Airtelspectrum[i].get_Location()<<" \t\t"<<Airtelspectrum[i].get_spectrum()<<endl;
+    // Print the Spectrum per Company
+    cout<<"\n\t  Airtel Spectrum\n"<<endl;
+    cout<<"Location"<<"\tSpectrum"<<"\tRevenue(Crores)\n"<<endl;
+    for(int i=0;i<22;i++){
+         if(Airtelspectrum[i].get_Location()=="Kolkata" || Airtelspectrum[i].get_Location()=="Chandigarh" || Airtelspectrum[i].get_Location()=="Lucknow" )
+            cout<<Airtelspectrum[i].get_Location()<<" \t"<<Airtelspectrum[i].get_spectrum()<<" \t"<<Airtelspectrum[i].get_revenue()<<endl;
+        else
+            cout<<Airtelspectrum[i].get_Location()<<" \t\t"<<Airtelspectrum[i].get_spectrum()<<" \t"<<Airtelspectrum[i].get_revenue()<<endl;
+    }
+    cout<<"\n\t  BSNL Spectrum\n"<<endl;
+    cout<<"Location"<<"\tSpectrum"<<"\tRevenue(Crores)\n"<<endl;
+    for(int i=0;i<24;i++){
+            if(BSNLspectrum[i].get_Location()=="Kolkata" || BSNLspectrum[i].get_Location()=="Chandigarh" || BSNLspectrum[i].get_Location()=="Lucknow" )
+            cout<<BSNLspectrum[i].get_Location()<<" \t"<<BSNLspectrum[i].get_spectrum()<<" \t"<<BSNLspectrum[i].get_revenue()<<endl;
+        else
+            cout<<BSNLspectrum[i].get_Location()<<" \t\t"<<BSNLspectrum[i].get_spectrum()<<" \t"<<BSNLspectrum[i].get_revenue()<<endl;
+    }
+    cout<<"\n\t  Jio Spectrum\n"<<endl;
+    cout<<"Location"<<"\tSpectrum"<<"\tRevenue(Crores)\n"<<endl;
+    for(int i=0;i<27;i++){
+            if(Jiospectrum[i].get_Location()=="Kolkata" || Jiospectrum[i].get_Location()=="Chandigarh" || Jiospectrum[i].get_Location()=="Lucknow" )
+            cout<<Jiospectrum[i].get_Location()<<" \t"<<Jiospectrum[i].get_spectrum()<<" \t"<<Jiospectrum[i].get_revenue()<<endl;
+        else
+            cout<<Jiospectrum[i].get_Location()<<" \t\t"<<Jiospectrum[i].get_spectrum()<<" \t"<<Jiospectrum[i].get_revenue()<<endl;
+    }
+    cout<<"\n\t  Vodafone Spectrum\n"<<endl;
+    cout<<"Location"<<"\tSpectrum"<<"\tRevenue(Crores)\n"<<endl;
+    for(int i=0;i<27;i++){
+            if(Vodafonespectrum[i].get_Location()=="Kolkata" || Vodafonespectrum[i].get_Location()=="Chandigarh" || Vodafonespectrum[i].get_Location()=="Lucknow" )
+            cout<<Vodafonespectrum[i].get_Location()<<" \t"<<Vodafonespectrum[i].get_spectrum()<<" \t"<<Vodafonespectrum[i].get_revenue()<<endl;
+        else
+            cout<<Vodafonespectrum[i].get_Location()<<" \t\t"<<Vodafonespectrum[i].get_spectrum()<<" \t"<<Vodafonespectrum[i].get_revenue()<<endl;
+    }
 
-    // }
-    // cout<<"\n  BSNL Spectrum\n"<<endl;
-    // for(int i=0;i<24;i++){
-    //         if(BSNLspectrum[i].get_Location()=="Kolkata" || BSNLspectrum[i].get_Location()=="Chandigarh" || BSNLspectrum[i].get_Location()=="Lucknow" )
-    //         cout<<BSNLspectrum[i].get_Location()<<" \t"<<BSNLspectrum[i].get_spectrum()<<endl;
-    //     else
-    //         cout<<BSNLspectrum[i].get_Location()<<" \t\t"<<BSNLspectrum[i].get_spectrum()<<endl;
-    // }
-    // cout<<"\n  Jio Spectrum\n"<<endl;
-    // for(int i=0;i<27;i++){
-    //         if(Jiospectrum[i].get_Location()=="Kolkata" || Jiospectrum[i].get_Location()=="Chandigarh" || Jiospectrum[i].get_Location()=="Lucknow" )
-    //         cout<<Jiospectrum[i].get_Location()<<" \t"<<Jiospectrum[i].get_spectrum()<<endl;
-    //     else
-    //         cout<<Jiospectrum[i].get_Location()<<" \t\t"<<Jiospectrum[i].get_spectrum()<<endl;
-    // }
-    // cout<<"\n  Vodafone Spectrum\n"<<endl;
-    // for(int i=0;i<27;i++){
-    //         if(Vodafonespectrum[i].get_Location()=="Kolkata" || Vodafonespectrum[i].get_Location()=="Chandigarh" || Vodafonespectrum[i].get_Location()=="Lucknow" )
-    //         cout<<Vodafonespectrum[i].get_Location()<<" \t"<<Vodafonespectrum[i].get_spectrum()<<endl;
-    //     else
-    //         cout<<Vodafonespectrum[i].get_Location()<<" \t\t"<<Vodafonespectrum[i].get_spectrum()<<endl;
-    // }
-
-// Find Request for Each Location
+// Find Spectrum for Each Location
+    
     string* Airtelspect = spect->findSpectrumLocation(Airtelspectrum,22);
     string* BSNLspect = spect->findSpectrumLocation(BSNLspectrum,24);
     string* Jiospect = spect->findSpectrumLocation(Jiospectrum,27);
     string* Vodafonespect= spect->findSpectrumLocation(Vodafonespectrum,27);
 
-    // cout<<"\n Airtel Spectrum per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //     if(location[i]!="Chandigarh")
-    //         cout<<location[i]<<"\t   ---------->\t"<<Airtelspect[i]<<endl;
-    //     else
-    //         cout<<location[i]<<" ---------->\t"<<Airtelspect[i]<<endl;
-    // }
+// Find Revenue for Each Location
+    int* AirtelRevenue = spect->findSpectrumRevenue(Airtelspectrum,22);
+    int* BSNLRevenue = spect->findSpectrumRevenue(BSNLspectrum,24);
+    int* JioRevenue = spect->findSpectrumRevenue(Jiospectrum,27);
+    int* VodafoneRevenue= spect->findSpectrumRevenue(Vodafonespectrum,27);
+
+    cout<<"\n\t Airtel Spectrum per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+        if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<AirtelRevenue[i]<<"\t"<<Airtelspect[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<AirtelRevenue[i]<<"\t"<<Airtelspect[i]<<endl;
+    }
     
-    // cout<<"\n  BSNL Spectrum per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //     if(location[i]!="Chandigarh")
-    //         cout<<location[i]<<"\t   ---------->\t"<<BSNLspect[i]<<endl;
-    //     else
-    //         cout<<location[i]<<" ---------->\t"<<BSNLspect[i]<<endl;
-    // }
+    cout<<"\n\t BSNL Spectrum per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+        if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<BSNLRevenue[i]<<"\t"<<BSNLspect[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<BSNLRevenue[i]<<"\t"<<BSNLspect[i]<<endl;
+    }
 
-    // cout<<"\n  Jio Spectrum per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //     if(location[i]!="Chandigarh")
-    //         cout<<location[i]<<"\t   ---------->\t"<<Jiospect[i]<<endl;
-    //     else
-    //         cout<<location[i]<<" ---------->\t"<<Jiospect[i]<<endl;
-    // }
+    cout<<"\n\t Jio Spectrum per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+        if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<JioRevenue[i]<<"\t"<<Jiospect[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<JioRevenue[i]<<"\t"<<Jiospect[i]<<endl;
+    }
 
-    // cout<<"\n  Vodafone Spectrum per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //     if(location[i]!="Chandigarh")
-    //         cout<<location[i]<<"\t   ---------->\t"<<Vodafonespect[i]<<endl;
-    //     else
-    //         cout<<location[i]<<" ---------->\t"<<Vodafonespect[i]<<endl;
-    // }
+    cout<<"\n\t Vodafone Spectrum per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+        if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<VodafoneRevenue[i]<<"\t"<<Vodafonespect[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<VodafoneRevenue[i]<<"\t"<<Vodafonespect[i]<<endl;
+    }
     
     int TotalAirtelSpectrumperLocation[6];
     int TotalBSNLSpectrumperLocation[6];
@@ -928,37 +997,37 @@ int main(){
             TotalVodafoneSpectrumperLocation[i] = spect->findtotalspectrum (Vodafonespect[i]);
     }
 
-    // cout<<"\n Total Airtel Spectrum per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //         if(location[i]!="Chandigarh")
-    //             cout<<location[i]<<"\t   ---------->\t"<<TotalAirtelSpectrumperLocation[i]<<" MHz"<<endl;
-    //         else
-    //             cout<<location[i]<<" ---------->\t"<<TotalAirtelSpectrumperLocation[i]<<" MHz"<<endl;
-    // }
+    cout<<"\n Total Airtel Spectrum per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+            if(location[i]!="Chandigarh")
+                cout<<location[i]<<"\t   ---------->\t"<<TotalAirtelSpectrumperLocation[i]<<" MHz"<<endl;
+            else
+                cout<<location[i]<<" ---------->\t"<<TotalAirtelSpectrumperLocation[i]<<" MHz"<<endl;
+    }
 
-    // cout<<"\n Total BSNL Spectrum per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //          if(location[i]!="Chandigarh")
-    //             cout<<location[i]<<"\t   ---------->\t"<<TotalBSNLSpectrumperLocation[i]<<" MHz"<<endl;
-    //         else
-    //             cout<<location[i]<<" ---------->\t"<<TotalBSNLSpectrumperLocation[i]<<" MHz"<<endl;
-    // }
+    cout<<"\n Total BSNL Spectrum per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+             if(location[i]!="Chandigarh")
+                cout<<location[i]<<"\t   ---------->\t"<<TotalBSNLSpectrumperLocation[i]<<" MHz"<<endl;
+            else
+                cout<<location[i]<<" ---------->\t"<<TotalBSNLSpectrumperLocation[i]<<" MHz"<<endl;
+    }
 
-    //  cout<<"\n Total Jio Spectrum per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //          if(location[i]!="Chandigarh")
-    //             cout<<location[i]<<"\t   ---------->\t"<<TotalJioSpectrumperLocation[i]<<" MHz"<<endl;
-    //         else
-    //             cout<<location[i]<<" ---------->\t"<<TotalJioSpectrumperLocation[i]<<" MHz"<<endl;
-    // }
+     cout<<"\n Total Jio Spectrum per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+             if(location[i]!="Chandigarh")
+                cout<<location[i]<<"\t   ---------->\t"<<TotalJioSpectrumperLocation[i]<<" MHz"<<endl;
+            else
+                cout<<location[i]<<" ---------->\t"<<TotalJioSpectrumperLocation[i]<<" MHz"<<endl;
+    }
 
-    // cout<<"\n Total Vodafone Spectrum per Location\n"<<endl;
-    // for(int i =0;i<6;i++){
-    //     if(location[i]!="Chandigarh")
-    //         cout<<location[i]<<"\t   ---------->\t"<<TotalVodafoneSpectrumperLocation[i]<<" MHz"<<endl;
-    //     else
-    //         cout<<location[i]<<" ---------->\t"<<TotalVodafoneSpectrumperLocation[i]<<" MHz"<<endl;
-    // }
+    cout<<"\n Total Vodafone Spectrum per Location\n"<<endl;
+    for(int i =0;i<6;i++){
+        if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<TotalVodafoneSpectrumperLocation[i]<<" MHz"<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<TotalVodafoneSpectrumperLocation[i]<<" MHz"<<endl;
+    }
 
     spectrumDensity* specDensity = new spectrumDensity();
 
@@ -1015,8 +1084,6 @@ int main(){
     }
     
 
-
-
     // Allocate spectrum
 
     string SpectrumperAllocated700[6];
@@ -1064,6 +1131,55 @@ int main(){
             cout<<location[i]<<"\t   ---------->\t"<<SpectrumperAllocated3500[i]<<endl;
         else
             cout<<location[i]<<" ---------->\t"<<SpectrumperAllocated3500[i]<<endl;
+    }
+
+    revenueGenerated* revGenerated = new revenueGenerated();
+
+    int RevenueGenerated700[6];
+    int RevenueGenerated800[6];
+    int RevenueGenerated1800[6];
+    int RevenueGenerated3500[6];
+
+    for(int i =0;i<6;i++){
+       RevenueGenerated700[i] = revGenerated->RevenueGeneratedSpectrum(SpectrumperAllocated700[i],AirtelRevenue,BSNLRevenue,JioRevenue,VodafoneRevenue,i);
+    }
+    for(int i =0;i<6;i++){
+       RevenueGenerated800[i] = revGenerated->RevenueGeneratedSpectrum(SpectrumperAllocated800[i],AirtelRevenue,BSNLRevenue,JioRevenue,VodafoneRevenue,i);
+    }
+    for(int i =0;i<6;i++){
+       RevenueGenerated1800[i] = revGenerated->RevenueGeneratedSpectrum(SpectrumperAllocated1800[i],AirtelRevenue,BSNLRevenue,JioRevenue,VodafoneRevenue,i);
+    }
+    for(int i =0;i<6;i++){
+       RevenueGenerated3500[i] = revGenerated->RevenueGeneratedSpectrum(SpectrumperAllocated3500[i],AirtelRevenue,BSNLRevenue,JioRevenue,VodafoneRevenue,i);
+    }
+
+    cout<<"\n  700 Spectrum Revenue in Crores\n"<<endl;
+    for(int i =0;i<6;i++){
+       if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<RevenueGenerated700[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<RevenueGenerated700[i]<<endl;
+    }
+    cout<<"\n  800 Spectrum Revenue in Crores\n"<<endl;
+    for(int i =0;i<6;i++){
+       if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<RevenueGenerated800[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<RevenueGenerated800[i]<<endl;
+    }
+    cout<<"\n  1800 Spectrum Revenue in Crores\n"<<endl;
+    for(int i =0;i<6;i++){
+       if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<RevenueGenerated1800[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<RevenueGenerated1800[i]<<endl;
+    }
+    cout<<"\n  3500 Spectrum Revenue in Crores\n"<<endl;
+    for(int i =0;i<6;i++){
+       if(location[i]!="Chandigarh")
+            cout<<location[i]<<"\t   ---------->\t"<<RevenueGenerated3500[i]<<endl;
+        else
+            cout<<location[i]<<" ---------->\t"<<RevenueGenerated3500[i]<<endl;
     }
 
     return 0;
