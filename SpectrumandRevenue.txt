@@ -1,0 +1,252 @@
+
+  Airtel Subscriber per Location
+
+Delhi	   ---------->	173333
+Chandigarh ---------->	439484
+Jaipur	   ---------->	166259
+Kolkata	   ---------->	178007
+Lucknow	   ---------->	82687
+Patna	   ---------->	118205
+
+  BSNL Subscriber per Location
+
+Delhi	   ---------->	465957
+Chandigarh ---------->	344699
+Jaipur	   ---------->	142080
+Kolkata	   ---------->	102958
+Lucknow	   ---------->	350322
+Patna	   ---------->	285153
+
+  Jio Subscriber per Location
+
+Delhi	   ---------->	221428
+Chandigarh ---------->	98764
+Jaipur	   ---------->	323922
+Kolkata	   ---------->	143424
+Lucknow	   ---------->	26405
+Patna	   ---------->	120618
+
+  Vodafone Subscriber per Location
+
+Delhi	   ---------->	422840
+Chandigarh ---------->	241741
+Jaipur	   ---------->	279723
+Kolkata	   ---------->	199047
+Lucknow	   ---------->	101502
+Patna	   ---------->	199579
+
+  700 Spectrum per Location
+
+Delhi	   ---------->	Vodafone Jio 
+Chandigarh ---------->	Airtel Vodafone Airtel 
+Jaipur	   ---------->	Airtel Jio Vodafone 
+Kolkata	   ---------->	Vodafone Jio Jio 
+Lucknow	   ---------->	BSNL BSNL Airtel 
+Patna	   ---------->	Airtel Airtel Vodafone Vodafone Vodafone Vodafone 
+
+  800 Spectrum per Location
+
+Delhi	   ---------->	BSNL BSNL Airtel Jio 
+Chandigarh ---------->	Jio 
+Jaipur	   ---------->	Jio Vodafone Jio 
+Kolkata	   ---------->	BSNL Airtel BSNL Jio 
+Lucknow	   ---------->	Vodafone Airtel BSNL Airtel 
+Patna	   ---------->	BSNL Jio Vodafone Vodafone BSNL Vodafone 
+
+  1800 Spectrum per Location
+
+Delhi	   ---------->	Vodafone Vodafone BSNL Airtel 
+Chandigarh ---------->	Airtel Airtel Airtel BSNL Jio Airtel 
+Jaipur	   ---------->	Jio Jio BSNL Airtel Airtel BSNL Vodafone 
+Kolkata	   ---------->	Airtel Jio BSNL Vodafone Airtel 
+Lucknow	   ---------->	BSNL BSNL 
+Patna	   ---------->	Airtel Airtel Jio Jio 
+
+  3500 Spectrum per Location
+
+Delhi	   ---------->	Airtel BSNL Jio Airtel Jio Jio Vodafone 
+Chandigarh ---------->	BSNL Vodafone Vodafone BSNL 
+Jaipur	   ---------->	BSNL Airtel Vodafone BSNL BSNL Vodafone 
+Kolkata	   ---------->	Vodafone BSNL 
+Lucknow	   ---------->	Airtel Airtel Vodafone BSNL 
+Patna	   ---------->	Vodafone Airtel Vodafone Vodafone Airtel Jio Jio 
+
+	 Airtel Spectrum per Location
+
+Delhi	   ---------->	40	700 MHz 1800 MHz 
+Chandigarh ---------->	91	1800 MHz 1800 MHz 3500 MHz 1800 MHz 
+Jaipur	   ---------->	102	700 MHz 800 MHz 3500 MHz 800 MHz 700 MHz 
+Kolkata	   ---------->	107	700 MHz 700 MHz 3500 MHz 700 MHz 1800 MHz 
+Lucknow	   ---------->	46	700 MHz 3500 MHz 700 MHz 
+Patna	   ---------->	46	700 MHz 1800 MHz 1800 MHz 
+
+	 BSNL Spectrum per Location
+
+Delhi	   ---------->	56	1800 MHz 800 MHz 700 MHz 
+Chandigarh ---------->	87	3500 MHz 700 MHz 1800 MHz 1800 MHz 3500 MHz 
+Jaipur	   ---------->	111	800 MHz 1800 MHz 1800 MHz 800 MHz 1800 MHz 800 MHz 
+Kolkata	   ---------->	39	3500 MHz 800 MHz 
+Lucknow	   ---------->	62	1800 MHz 800 MHz 700 MHz 
+Patna	   ---------->	91	800 MHz 3500 MHz 800 MHz 700 MHz 1800 MHz 
+
+	 Jio Spectrum per Location
+
+Delhi	   ---------->	146	1800 MHz 700 MHz 700 MHz 700 MHz 1800 MHz 800 MHz 3500 MHz 1800 MHz 
+Chandigarh ---------->	65	1800 MHz 3500 MHz 3500 MHz 1800 MHz 
+Jaipur	   ---------->	105	3500 MHz 3500 MHz 800 MHz 1800 MHz 
+Kolkata	   ---------->	116	700 MHz 3500 MHz 700 MHz 700 MHz 800 MHz 
+Lucknow	   ---------->	39	800 MHz 1800 MHz 700 MHz 
+Patna	   ---------->	53	1800 MHz 800 MHz 800 MHz 
+
+	 Vodafone Spectrum per Location
+
+Delhi	   ---------->	67	3500 MHz 700 MHz 800 MHz 
+Chandigarh ---------->	113	3500 MHz 1800 MHz 700 MHz 700 MHz 800 MHz 
+Jaipur	   ---------->	59	800 MHz 700 MHz 
+Kolkata	   ---------->	123	3500 MHz 3500 MHz 3500 MHz 800 MHz 1800 MHz 
+Lucknow	   ---------->	137	1800 MHz 1800 MHz 700 MHz 1800 MHz 1800 MHz 800 MHz 1800 MHz 
+Patna	   ---------->	87	800 MHz 700 MHz 800 MHz 1800 MHz 800 MHz 
+
+ Total Airtel Spectrum per Location
+
+Delhi	   ---------->	2500 MHz
+Chandigarh ---------->	8900 MHz
+Jaipur	   ---------->	6500 MHz
+Kolkata	   ---------->	7400 MHz
+Lucknow	   ---------->	4900 MHz
+Patna	   ---------->	4300 MHz
+
+ Total BSNL Spectrum per Location
+
+Delhi	   ---------->	3300 MHz
+Chandigarh ---------->	11300 MHz
+Jaipur	   ---------->	7800 MHz
+Kolkata	   ---------->	4300 MHz
+Lucknow	   ---------->	3300 MHz
+Patna	   ---------->	7600 MHz
+
+ Total Jio Spectrum per Location
+
+Delhi	   ---------->	11800 MHz
+Chandigarh ---------->	10600 MHz
+Jaipur	   ---------->	9600 MHz
+Kolkata	   ---------->	6400 MHz
+Lucknow	   ---------->	3300 MHz
+Patna	   ---------->	3400 MHz
+
+ Total Vodafone Spectrum per Location
+
+Delhi	   ---------->	5000 MHz
+Chandigarh ---------->	7500 MHz
+Jaipur	   ---------->	1500 MHz
+Kolkata	   ---------->	13100 MHz
+Lucknow	   ---------->	10500 MHz
+Patna	   ---------->	4900 MHz
+
+  Airtel Spectrum Density per Location
+
+Delhi	   ---------->	0.0144231
+Chandigarh ---------->	0.020251
+Jaipur	   ---------->	0.0390956
+Kolkata	   ---------->	0.0415714
+Lucknow	   ---------->	0.0592596
+Patna	   ---------->	0.0363775
+
+  BSNL Spectrum Density per Location
+
+Delhi	   ---------->	0.0070822
+Chandigarh ---------->	0.0327822
+Jaipur	   ---------->	0.0548986
+Kolkata	   ---------->	0.0417646
+Lucknow	   ---------->	0.00941991
+Patna	   ---------->	0.0266524
+
+  Jio Spectrum Density per Location
+
+Delhi	   ---------->	0.0532905
+Chandigarh ---------->	0.107327
+Jaipur	   ---------->	0.0296368
+Kolkata	   ---------->	0.0446229
+Lucknow	   ---------->	0.124976
+Patna	   ---------->	0.0281882
+
+  Vodafone Spectrum Density per Location
+
+Delhi	   ---------->	0.0118248
+Chandigarh ---------->	0.0310249
+Jaipur	   ---------->	0.00536245
+Kolkata	   ---------->	0.0658136
+Lucknow	   ---------->	0.103446
+Patna	   ---------->	0.0245517
+
+  Spectrum 700 MHZ Allocated to Requested Company per Location
+
+Delhi	   ---------->	Vodafone
+Chandigarh ---------->	Airtel
+Jaipur	   ---------->	Vodafone
+Kolkata	   ---------->	Jio
+Lucknow	   ---------->	BSNL
+Patna	   ---------->	Vodafone
+
+  Spectrum 800 MHZ Allocated to Requested Company per Location
+
+Delhi	   ---------->	BSNL
+Chandigarh ---------->	Jio
+Jaipur	   ---------->	Vodafone
+Kolkata	   ---------->	Airtel
+Lucknow	   ---------->	BSNL
+Patna	   ---------->	Vodafone
+
+  Spectrum 1800 MHZ Allocated to Requested Company per Location
+
+Delhi	   ---------->	BSNL
+Chandigarh ---------->	Airtel
+Jaipur	   ---------->	Vodafone
+Kolkata	   ---------->	Airtel
+Lucknow	   ---------->	BSNL
+Patna	   ---------->	Jio
+
+  Spectrum 3500 MHZ Allocated to Requested Company per Location
+
+Delhi	   ---------->	BSNL
+Chandigarh ---------->	Vodafone
+Jaipur	   ---------->	Vodafone
+Kolkata	   ---------->	BSNL
+Lucknow	   ---------->	BSNL
+Patna	   ---------->	Vodafone
+
+  700 Spectrum Revenue in Crores
+
+Delhi	   ---------->	67
+Chandigarh ---------->	91
+Jaipur	   ---------->	59
+Kolkata	   ---------->	116
+Lucknow	   ---------->	62
+Patna	   ---------->	87
+
+  800 Spectrum Revenue in Crores
+
+Delhi	   ---------->	56
+Chandigarh ---------->	65
+Jaipur	   ---------->	59
+Kolkata	   ---------->	107
+Lucknow	   ---------->	62
+Patna	   ---------->	87
+
+  1800 Spectrum Revenue in Crores
+
+Delhi	   ---------->	56
+Chandigarh ---------->	91
+Jaipur	   ---------->	59
+Kolkata	   ---------->	107
+Lucknow	   ---------->	62
+Patna	   ---------->	53
+
+  3500 Spectrum Revenue in Crores
+
+Delhi	   ---------->	56
+Chandigarh ---------->	113
+Jaipur	   ---------->	59
+Kolkata	   ---------->	39
+Lucknow	   ---------->	62
+Patna	   ---------->	87
