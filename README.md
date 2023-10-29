@@ -11,3 +11,5 @@ Mention the Input filename on which action needs to be taken for Instance fileNa
 for Each Target Run the command satisfying mentined condition using command: make
 
 There are Multiple csv files that we are working with namely we are reading each file and saving the required feilds in array of data type of individual return type of respective classes.
+
+## Remember To Change the Directory to the Current Project Folder

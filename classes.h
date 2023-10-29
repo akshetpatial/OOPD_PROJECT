@@ -138,10 +138,14 @@ void read_licensed_allocation(licensed_allocation *licensed_read){
 
 //Printing the AllocationSpectrum.csv
 void info_licensed_allocation(licensed_allocation *licensed_read){
-    cout<<"LOCATION"<<" "<<"REQUEST"<<" "<<"COMPANY"<<endl;
+    cout<<"LOCATION"<<" \t"<<"REQUEST"<<"  "<<"COMPANY"<<endl;
     cout<<endl;
     for(int i=0;i<18;i++){
-        cout<<licensed_read[i].location<<" "<<licensed_read[i].request<<" "<<licensed_read[i].company<<endl;
+        //cout<<licensed_read[i].location<<" "<<licensed_read[i].request<<" "<<licensed_read[i].company<<endl;
+        if(licensed_read[i].location =="Lucknow" || licensed_read[i].location =="Kolkata" || licensed_read[i].location =="Chandigarh " || licensed_read[i].location =="Chandigarh")
+            cout<<licensed_read[i].location<<" \t"<<licensed_read[i].request<<"\t"<<licensed_read[i].company<<"\t"<<endl;
+        else
+            cout<<licensed_read[i].location<<" \t\t"<<licensed_read[i].request<<"\t"<<licensed_read[i].company<<"\t"<<endl;
     }
     cout<<endl;
 }
