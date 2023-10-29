@@ -1,0 +1,25 @@
+LOCATION,SPECTRUM,COMPANY
+Delhi,700,Vodafone
+Chandigarh ,700,Airtel
+Jaipur,700,Vodafone
+Kolkata,700,Jio
+Lucknow,700,BSNL
+Patna,700,Vodafone
+Delhi,800,BSNL
+Chandigarh,800,Jio
+Jaipur,800,Vodafone
+Kolkata,800,Airtel
+Lucknow,800,BSNL
+Patna,800,Vodafone
+Delhi,1800,BSNL
+Chandigarh,1800,Aitel
+Jaipur,1800,Vodafone
+Kolkata,1800,Airtel
+Lucknow,1800,BSNL
+Patna,1800,Jio
+Delhi,3500,BSNL
+Chandigarh ,3500,Vodafone
+Jaipur,3500,Vodafone
+Kolkata,3500,BSNL
+Lucknow,3500,BSNL
+Patna,3500,Vodafone

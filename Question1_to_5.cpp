@@ -2,7 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-
+#include "classes.h"
 
 
 using namespace std;
@@ -198,7 +198,8 @@ class spectrumRangePerComp : public spectrumRangeClass{
     int findtotalspectrum(string &spect){
         string digits;
         int sum =0;
-        for(int i =0;i<spect.length();i++){
+        int len = spect.length();
+        for(int i =0;i<len;i++){
             char ch = spect[i];
             if (ch >= '0' && ch <= '9')
                 digits += ch;
@@ -506,10 +507,10 @@ public:
     string allocateSpectrum(string &req,float AirtelspecDensityLocation[],float BSNLspecDensityLocation[],float JiospecDensityLocation[],float VodafonespecDensityLocation[], int index){
 
         float min = INT_MAX;
-        float min1 = 0.0 ;
-        float min2 = 0.0 ;
-        float min3 = 0.0 ;
-        float min4 = 0.0 ;
+        float min1;
+        float min2;
+        float min3;
+        float min4;
 
         if(req.find("Vodafone")!= std::string::npos){
             min4 = VodafonespecDensityLocation[index];
@@ -538,8 +539,10 @@ public:
             return "BSNL";
         if(min == min3)
             return "Jio";  
+        if(min == min4)
+            return "Vodafone";
         else
-            return "Vodafone";  
+            return "No Company";
     }
 };
 
@@ -1290,6 +1293,13 @@ int main(){
 
     spectrumRequestClass* spectrumRequest = readCSVFileReq("spectrumRequest.csv");
 
+    //Reading the mvno request file.
+    //Dynamic Memory allocation of an array of class(mvno_request_updated).
+    mvno_request_upd *req_read=new mvno_request_upd[20];
+
+    //Function call for reading the csv file.
+    read_mvno_request_upd(req_read);
+
     // Find Number of Subscriber per Company
     subscriberPerComp* subs = new subscriberPerComp();
    
@@ -1454,7 +1464,8 @@ int main(){
     cout<<"Press 11. to see Spectrum Desity per Location: "<<endl;
     cout<<"Press 12. to see Spectrum Allocated per Spectrum: "<<endl;
     cout<<"Press 13. to see Revenue Generated per Allocation: "<<endl;
-    cout<<"Press 14. to Save in the File:  "<<endl;
+    cout<<"press 14. to see the mvno spectrum request"<<endl;
+    cout<<"Press 15. to Save in the File:  "<<endl;
     cout<<"Press 0 to exit"<<endl;
     cout<<"Enter your Choice: \n"<<endl;
     int choice;
@@ -1534,6 +1545,12 @@ int main(){
             }
             case 14:
             {
+                    //Function call for printing the csv file.
+                    info_mvno_request_upd(req_read);
+                    break;
+            }
+            case 15:
+            {
                     pt->saveinFile(location, subsAirtel, subsBSNL,subsJio, subsVoda, req700,  req800, req1800, req3500, AirtelRevenue,  
                     BSNLRevenue, JioRevenue, VodafoneRevenue, Airtelspect, BSNLspect,  Jiospect,  Vodafonespect, TotalAirtelSpectrumperLocation,
                     TotalBSNLSpectrumperLocation, TotalJioSpectrumperLocation,  TotalVodafoneSpectrumperLocation, AirtelspecDensityLocation,  
@@ -1544,7 +1561,8 @@ int main(){
             }
             case 0 :
             {
-                
+                    cout<<"Thanks for visiting!"; 
+                    exit(-1);
                     break;
             }
             default:
